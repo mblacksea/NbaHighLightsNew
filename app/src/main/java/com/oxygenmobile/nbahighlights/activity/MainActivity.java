@@ -32,7 +32,7 @@ import com.oxygenmobile.nbahighlights.fragment.SettingsFragment;
 import com.oxygenmobile.nbahighlights.other.CircleTransform;
 
 public class MainActivity extends AppCompatActivity {
-
+    //Bir takim islemler burasi silinecek.
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
