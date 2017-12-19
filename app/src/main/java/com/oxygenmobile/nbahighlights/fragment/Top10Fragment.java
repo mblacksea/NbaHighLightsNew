@@ -29,9 +29,7 @@ public class Top10Fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2; 
@@ -75,18 +73,8 @@ public class Top10Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_top_10, container, false);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapterPlayList(getDataSet());
-        mRecyclerView.setAdapter(mAdapter);
-
-
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_top_10, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -95,13 +83,7 @@ public class Top10Fragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-    private List<PlayListItem> getDataSet() {
-        List<PlayListItem> results = ((GlobalVariables) getActivity().getApplicationContext()).getPlayListItemList();
-        for (PlayListItem i:results){
-            Log.e("Items",i.getTitle());
-        }
-        return results;
-    }
+
 
     @Override
     public void onAttach(Context context) {

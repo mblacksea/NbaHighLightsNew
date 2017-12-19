@@ -90,7 +90,7 @@ public class SplashActivity extends AppCompatActivity {
                         String id = jsonObject.getString("id");
                         String publishedAt = snippet.getString("publishedAt");
                         String title = snippet.getString("title");
-                        String thumbnails = snippet.getJSONObject("thumbnails").getJSONObject("default").getString("url");
+                        String thumbnails = snippet.getJSONObject("thumbnails").getJSONObject("standard").getString("url");
                         silinecekSayac = silinecekSayac + 1;
                         Log.e("Api den gelen cevap", id + " " + publishedAt + " " + title + " " + thumbnails);
                         playListItemsList.add(new PlayListItem(id, publishedAt, title, thumbnails));

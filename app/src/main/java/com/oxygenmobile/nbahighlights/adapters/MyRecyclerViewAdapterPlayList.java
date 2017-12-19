@@ -5,16 +5,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.model.PlayListItem;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by MUSTAFA on 18.12.2017.
- *
  */
 
 public class MyRecyclerViewAdapterPlayList extends RecyclerView
@@ -26,12 +27,12 @@ public class MyRecyclerViewAdapterPlayList extends RecyclerView
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
-        TextView label;
+        ImageView label;
         TextView dateTime;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            label = (TextView) itemView.findViewById(R.id.textView);
+            label = (ImageView) itemView.findViewById(R.id.imageView);
             dateTime = (TextView) itemView.findViewById(R.id.textView2);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
@@ -40,7 +41,7 @@ public class MyRecyclerViewAdapterPlayList extends RecyclerView
         @Override
         public void onClick(View v) {
             Log.d("Deneme", "onClick " + getLayoutPosition() + " " + mDataset.get(getLayoutPosition()).getTitle());
-           // myClickListener.onItemClick(getAdapterPosition(), v);
+            // myClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
@@ -60,8 +61,9 @@ public class MyRecyclerViewAdapterPlayList extends RecyclerView
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.label.setText(mDataset.get(position).getTitle());
-        holder.dateTime.setText(mDataset.get(position).getPublishedAt());
+        Picasso.with(holder.label.getContext()).load(mDataset.get(position).getThumbnails()).into(holder.label);
+        // holder.label.setImageResource(mDataset.get(position).getThumbnails());
+        holder.dateTime.setText(mDataset.get(position).getTitle());
     }
 
 
