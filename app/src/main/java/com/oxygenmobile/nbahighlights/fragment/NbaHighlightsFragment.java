@@ -19,7 +19,7 @@ import com.oxygenmobile.nbahighlights.utils.GlobalVariables;
 import java.util.List;
 
 
-public class NbaHighlightsFragment extends Fragment {
+public class NbaHighlightsFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,13 +68,13 @@ public class NbaHighlightsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_top_10, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_nba_highlights, container, false);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        mRecyclerView =  rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapterPlayList(getPlayListItemsForRecyclerView());
+        mAdapter = new MyRecyclerViewAdapterPlayList(getPlayListItemsForRecyclerView(),getContext());
         mRecyclerView.setAdapter(mAdapter);
 
 

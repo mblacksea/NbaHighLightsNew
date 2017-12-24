@@ -1,11 +1,13 @@
 package com.oxygenmobile.nbahighlights.model;
 
+import java.io.Serializable;
+
 /**
  * Created by MUSTAFA on 18.12.2017.
  *
  */
 
-public class PlayListItem {
+public class PlayListItem implements Serializable {
 
     private String id;
     private String publishedAt;

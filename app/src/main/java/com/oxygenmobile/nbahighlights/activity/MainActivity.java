@@ -30,6 +30,7 @@ import com.oxygenmobile.nbahighlights.fragment.NotificationsFragment;
 import com.oxygenmobile.nbahighlights.fragment.Top10Fragment;
 import com.oxygenmobile.nbahighlights.fragment.SettingsFragment;
 import com.oxygenmobile.nbahighlights.other.CircleTransform;
+import com.oxygenmobile.nbahighlights.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
     //Bir takim islemler burasi silinecek.
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     // urls to load navigation header background image
     // and profile image  urlProfileImg
-    private static final String urlProfileImg = "https://www.logodesignlove.com/images/classic/nba-logo.jpg";
-    private static final String urlNavHeaderBg = "https://cdn-s3.si.com/s3fs-public/styles/marquee_large_2x/public/2017/08/02/michael-jordan-kobe-bryant-lebron-james-greatest-of-alltime.jpg";
+    private static final String urlProfileImg = "http://i.cdn.turner.com/nba/nba/assets/icons/apple-touch-icon.png";
+    private static final String urlNavHeaderBg = "https://images5.alphacoders.com/467/467394.jpg";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
-        txtName = (TextView) navHeader.findViewById(R.id.name);
-        txtWebsite = (TextView) navHeader.findViewById(R.id.website);
+     //   txtName = (TextView) navHeader.findViewById(R.id.name);
+      //  txtWebsite = (TextView) navHeader.findViewById(R.id.website);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
@@ -120,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
         txtWebsite.setText("www.androidhive.info");*/
 
         // loading header background image
-        Glide.with(this).load(urlNavHeaderBg)
+       Glide.with(this).load(Utils.urlNavHeaderBg)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imgNavHeaderBg);
 
         // Loading profile image
-        Glide.with(this).load(urlProfileImg)
+        Glide.with(this).load(Utils.urlProfileImg)
                 .crossFade()
                 .thumbnail(0.5f)
                 .bitmapTransform(new CircleTransform(this))

@@ -4,27 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.oxygenmobile.nbahighlights.fragment.NbaHighlightsFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:alpha="0.3"
-            android:src="@drawable/ic_home_black_24dp"
-            android:id="@+id/imageView2" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/imageView2"
-            android:layout_centerHorizontal="true"
-            android:text="Nba Highligths" />
-    </RelativeLayout>
+        </RelativeLayout>
+
 </FrameLayout>

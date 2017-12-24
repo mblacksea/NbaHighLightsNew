@@ -5,16 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.oxygenmobile.nbahighlights.utils.GlobalVariables"
+        android:name=".utils.GlobalVariables"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.oxygenmobile.nbahighlights.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +22,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.oxygenmobile.nbahighlights.activity.AboutUsActivity"
+            android:name=".activity.AboutUsActivity"
             android:label="@string/activity_title_about_us" />
-        <activity android:name="com.oxygenmobile.nbahighlights.activity.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PlayListItemsActivity"
+            android:label="@string/activity_play_list_items_activity" />
+        <activity
+            android:name=".activity.YoutubeVideoDisplayActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
