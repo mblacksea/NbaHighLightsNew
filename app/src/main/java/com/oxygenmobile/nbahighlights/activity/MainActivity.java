@@ -34,21 +34,13 @@ import com.oxygenmobile.nbahighlights.other.CircleTransform;
 import com.oxygenmobile.nbahighlights.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
-    //Bir takim islemler burasi silinecek.
+
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtWebsite;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
 
-    // urls to load navigation header background image
-    // and profile image  urlProfileImg
-    private static final String urlProfileImg = "http://i.cdn.turner.com/nba/nba/assets/icons/apple-touch-icon.png";
-    private static final String urlNavHeaderBg = "https://images5.alphacoders.com/467/467394.jpg";
-
-    // index to identify current nav menu item
     public static int navItemIndex = 0;
 
     // tags used to attach the fragments
@@ -78,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer =  findViewById(R.id.drawer_layout);
         navigationView =  findViewById(R.id.nav_view);
-        fab =  findViewById(R.id.fab);
+
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
@@ -90,13 +82,7 @@ public class MainActivity extends AppCompatActivity {
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         // load nav menu header data
         loadNavHeader();
@@ -156,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             drawer.closeDrawers();
 
             // show or hide the fab button
-            toggleFab();
+
             return;
         }
 
@@ -183,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // show or hide the fab button
-        toggleFab();
+
 
         //Closing drawer on item click
         drawer.closeDrawers();
@@ -329,22 +315,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-
-        //show menu only when home fragment is selected
-        if (navItemIndex == 0) {
-            getMenuInflater().inflate(R.menu.main, menu);
-        }
-
-        // when fragment is notifications, load the menu created for notifications
-        if (navItemIndex == 3) {
-            getMenuInflater().inflate(R.menu.notifications, menu);
-        }
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -352,31 +322,33 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
+
+
+        return super.onOptionsItemSelected(item);
+
+        //noinspection SimplifiableIfStatement
+
+
+
+        //noinspection SimplifiableIfStatement
+      /*  if (id == R.id.action_logout) {
             Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
             return true;
-        }
+        }*/
 
         // user is in notifications fragment
         // and selected 'Mark all as Read'
-        if (id == R.id.action_mark_all_read) {
+      /*  if (id == R.id.action_mark_all_read) {
             Toast.makeText(getApplicationContext(), "All notifications marked as read!", Toast.LENGTH_LONG).show();
-        }
+        }*/
 
         // user is in notifications fragment
         // and selected 'Clear All'
-        if (id == R.id.action_clear_notifications) {
+      /*  if (id == R.id.action_clear_notifications) {
             Toast.makeText(getApplicationContext(), "Clear all notifications!", Toast.LENGTH_LONG).show();
-        }
+        }*/
 
-        return super.onOptionsItemSelected(item);
     }
 
-    // show or hide the fab
-    private void toggleFab() {
-        if (navItemIndex == 0)
-            fab.show();
-        else
-            fab.hide();
-    }
+
 }

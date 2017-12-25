@@ -1,10 +1,8 @@
 package com.oxygenmobile.nbahighlights.adapters;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,13 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import com.oxygenmobile.nbahighlights.R;
-import com.oxygenmobile.nbahighlights.activity.AboutUsActivity;
 import com.oxygenmobile.nbahighlights.activity.PlayListItemsActivity;
-import com.oxygenmobile.nbahighlights.fragment.MoviesFragment;
 import com.oxygenmobile.nbahighlights.model.PlayListItem;
 import com.squareup.picasso.Picasso;
 
@@ -27,12 +21,12 @@ import com.squareup.picasso.Picasso;
  *
  */
 
-public class MyRecyclerViewAdapterPlayList extends RecyclerView
-        .Adapter<MyRecyclerViewAdapterPlayList
-        .DataObjectHolder> {
+public class MyRecyclerViewAdapterPlayList extends RecyclerView.Adapter<MyRecyclerViewAdapterPlayList.DataObjectHolder>  {
     private static String LOG_TAG = "MyRecyclerViewAdapter";
-    private static List<PlayListItem> mDataset;
-    Context context;
+    private List<PlayListItem> mDataset;
+    private List<PlayListItem> mFilteredList ;
+    private Context context;
+
 
     public Context getContext() {
         return context;
@@ -46,6 +40,7 @@ public class MyRecyclerViewAdapterPlayList extends RecyclerView
         mDataset = myDataset;
         this.context=context;
     }
+
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder {
         ImageView imageView;

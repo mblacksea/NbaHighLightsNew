@@ -6,26 +6,32 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.adapters.MyRecyclerViewAdapterPlayList;
 import com.oxygenmobile.nbahighlights.model.PlayListItem;
 import com.oxygenmobile.nbahighlights.utils.GlobalVariables;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class NbaHighlightsFragment extends Fragment  {
+public class NbaHighlightsFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyRecyclerViewAdapterPlayList mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     // TODO: Rename and change types of parameters
@@ -59,6 +65,7 @@ public class NbaHighlightsFragment extends Fragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -70,17 +77,70 @@ public class NbaHighlightsFragment extends Fragment  {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_nba_highlights, container, false);
 
+
         mRecyclerView =  rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MyRecyclerViewAdapterPlayList(getPlayListItemsForRecyclerView(),getContext());
         mRecyclerView.setAdapter(mAdapter);
-
-
         return rootView;
 
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Search");
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (newText == null || newText.trim().isEmpty()) {
+            resetSearch();
+            return false;
+        }
+
+        List<PlayListItem> filteredValues = new ArrayList<PlayListItem>(getPlayListItemsForRecyclerView());
+        for (PlayListItem value : getPlayListItemsForRecyclerView()) {
+            if (!value.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                filteredValues.remove(value);
+            }
+        }
+
+        mAdapter = new MyRecyclerViewAdapterPlayList(filteredValues,getContext());
+        mRecyclerView.setAdapter(mAdapter);
+
+        return false;
+    }
+
+    public void resetSearch() {
+        mAdapter = new MyRecyclerViewAdapterPlayList(getPlayListItemsForRecyclerView(),getContext());
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        return true;
+    }
+
+
 
     private List<PlayListItem> getPlayListItemsForRecyclerView() {
         List<PlayListItem> results = ((GlobalVariables) getActivity().getApplicationContext()).getPlayListItemList();
@@ -114,6 +174,7 @@ public class NbaHighlightsFragment extends Fragment  {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
