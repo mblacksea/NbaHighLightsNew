@@ -54,11 +54,15 @@ public class PlayListItemsActivity extends AppCompatActivity {
 
         backroundPhoto = findViewById(R.id.backroundPhoto);
         listView = findViewById(R.id.listview);
-        AdView mAdView = findViewById(R.id.adView);
+        AdView mAdView =  findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+     /*   AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("104FFF883032DD883285FD61E388A1C4")
                 .build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
 
         Intent intent = getIntent();

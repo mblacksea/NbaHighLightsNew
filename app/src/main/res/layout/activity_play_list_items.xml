@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-7577190809228817/8753715627">
+        ads:adUnitId="ca-app-pub-7577190809228817/2151182559">
     </com.google.android.gms.ads.AdView>
 
 

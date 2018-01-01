@@ -22,7 +22,7 @@ public class YoutubeVideoDisplayActivity extends YouTubeBaseActivity implements
     private YouTubePlayerView youTubeView;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     private String gameVideoId;
-    private InterstitialAd  interstitial;
+    private InterstitialAd interstitial;
 
 
     @Override
@@ -48,19 +48,13 @@ public class YoutubeVideoDisplayActivity extends YouTubeBaseActivity implements
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
             //  adUtils = new InterstitalAdUtils(getApplicationContext());
-            String REKLAM_ID = "ca-app-pub-7577190809228817/2353271888";
+            String REKLAM_ID = "ca-app-pub-7577190809228817/1596471172";
             interstitial = new InterstitialAd(this);
             interstitial.setAdUnitId(REKLAM_ID);
-            //// TODO: 21.10.2017  testten sonra bu kodu kullan.
-            //test ten sonra bu reklam, kullan.
-       /* AdRequest adRequest = new AdRequest.Builder().build();
 
-        interstitial.loadAd(adRequest);*/
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice("104FFF883032DD883285FD61E388A1C4")
-                    .build();
-
+            AdRequest adRequest = new AdRequest.Builder().build();
             interstitial.loadAd(adRequest);
+
 
             interstitial.setAdListener(new AdListener() {
                 @Override

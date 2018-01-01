@@ -107,10 +107,8 @@ public class Top10Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_top_10, container, false);
 
-        AdView mAdView = rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("104FFF883032DD883285FD61E388A1C4")
-                .build();
+        AdView mAdView =  rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         new RetrieveTopPlayListAsyncTask(rootView).execute();
         

@@ -79,15 +79,15 @@ public class NbaHighlightsFragment extends Fragment implements SearchView.OnQuer
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_nba_highlights, container, false);
 
-             /* AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView =  rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
 
-        AdView mAdView = rootView.findViewById(R.id.adView);
+      /*  AdView mAdView = rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("104FFF883032DD883285FD61E388A1C4")
                 .build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         mRecyclerView =  rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
