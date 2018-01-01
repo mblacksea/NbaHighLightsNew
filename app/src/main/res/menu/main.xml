@@ -7,6 +7,6 @@
       android:orderInCategory="1"
       myapp:showAsAction="always"
       myapp:actionViewClass="android.widget.SearchView"
-      android:title="Search" />
+      android:title="" />
 
 </menu>

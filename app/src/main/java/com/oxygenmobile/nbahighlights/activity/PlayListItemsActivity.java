@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.adapters.MyAllGamesAdapter;
 import com.oxygenmobile.nbahighlights.configuration.Config;
@@ -52,6 +54,12 @@ public class PlayListItemsActivity extends AppCompatActivity {
 
         backroundPhoto = findViewById(R.id.backroundPhoto);
         listView = findViewById(R.id.listview);
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("104FFF883032DD883285FD61E388A1C4")
+                .build();
+        mAdView.loadAd(adRequest);
+
 
         Intent intent = getIntent();
         int playListPosition = intent.getIntExtra("PlayListID", 0);//async olarak bu id ile api cagir
@@ -63,7 +71,6 @@ public class PlayListItemsActivity extends AppCompatActivity {
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(backroundPhoto);
-
 
 
         RetrievePlayListAllGameAsyncTask retrievePlayListAllGameAsyncTask = new RetrievePlayListAllGameAsyncTask();

@@ -12,8 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +28,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.adapters.MyRecyclerViewAdapterPlayList;
 import com.oxygenmobile.nbahighlights.adapters.MyRecyclerViewAdapterTopPlayList;
@@ -101,7 +107,11 @@ public class Top10Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_top_10, container, false);
 
-
+        AdView mAdView = rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("104FFF883032DD883285FD61E388A1C4")
+                .build();
+        mAdView.loadAd(adRequest);
         new RetrieveTopPlayListAsyncTask(rootView).execute();
         
        /* RetrieveTopPlayListAsyncTask retrieveTopPlayListAsyncTask = new RetrieveTopPlayListAsyncTask();
@@ -111,6 +121,7 @@ public class Top10Fragment extends Fragment {
         return rootView;
 
     }
+
 
     public class RetrieveTopPlayListAsyncTask extends AsyncTask<Void, Void, List<Game>> {
 
@@ -127,7 +138,7 @@ public class Top10Fragment extends Fragment {
         protected void onPreExecute() {
 
             progressDialog.setCancelable(false);
-            progressDialog.setMessage("Lütfen Bekleyiniz.....");
+            progressDialog.setMessage("Please Wait.....");
             progressDialog.show();
         }
 
@@ -202,7 +213,7 @@ public class Top10Fragment extends Fragment {
 
 
                 // JsonParser jsonParser = new JsonParser(baseUrl);
-              //  return jsonParser.getJsonData(Config.TOP_PLAYS_API);
+                //  return jsonParser.getJsonData(Config.TOP_PLAYS_API);
             }
 
 
@@ -213,13 +224,17 @@ public class Top10Fragment extends Fragment {
             ((GlobalVariables) getActivity().getApplicationContext()).setTopPlayListItem(playListItems);
             mRecyclerView = rootView.findViewById(R.id.my_recycler_view);
             mRecyclerView.setHasFixedSize(true);
-            mLayoutManager = new StaggeredGridLayoutManager(2,1);
+            mLayoutManager = new StaggeredGridLayoutManager(2, 1);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mAdapter = new MyRecyclerViewAdapterTopPlayList(playListItems, getContext());
             mRecyclerView.setAdapter(mAdapter);
             progressDialog.dismiss();
 
         }
+    }
+
+    private List<Game> getTopPlays() {
+        return ((GlobalVariables) getActivity().getApplicationContext()).getTopPlayListItem();
     }
 
 

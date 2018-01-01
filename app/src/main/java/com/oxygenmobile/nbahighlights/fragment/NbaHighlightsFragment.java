@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.adapters.MyRecyclerViewAdapterPlayList;
 import com.oxygenmobile.nbahighlights.model.PlayListItem;
@@ -77,6 +79,15 @@ public class NbaHighlightsFragment extends Fragment implements SearchView.OnQuer
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_nba_highlights, container, false);
 
+             /* AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);*/
+
+        AdView mAdView = rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("104FFF883032DD883285FD61E388A1C4")
+                .build();
+        mAdView.loadAd(adRequest);
 
         mRecyclerView =  rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -94,7 +105,7 @@ public class NbaHighlightsFragment extends Fragment implements SearchView.OnQuer
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(this);
-        searchView.setQueryHint("Search");
+        searchView.setQueryHint("Ex: 2017.10.20");
 
         super.onCreateOptionsMenu(menu, inflater);
 
@@ -112,7 +123,7 @@ public class NbaHighlightsFragment extends Fragment implements SearchView.OnQuer
             return false;
         }
 
-        List<PlayListItem> filteredValues = new ArrayList<PlayListItem>(getPlayListItemsForRecyclerView());
+        List<PlayListItem> filteredValues = new ArrayList<>(getPlayListItemsForRecyclerView());
         for (PlayListItem value : getPlayListItemsForRecyclerView()) {
             if (!value.getTitle().toLowerCase().contains(newText.toLowerCase())) {
                 filteredValues.remove(value);
@@ -190,4 +201,7 @@ public class NbaHighlightsFragment extends Fragment implements SearchView.OnQuer
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.oxygenmobile.nbahighlights.activity.PlayListItemsActivity">
 
 
@@ -35,11 +36,22 @@
         android:id="@+id/listview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/backroundPhoto"
         android:dividerHeight="4px"
         android:padding="2dp" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7577190809228817/8753715627">
+    </com.google.android.gms.ads.AdView>
 
 
 
