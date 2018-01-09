@@ -107,7 +107,7 @@ public class Top10Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_top_10, container, false);
 
-        AdView mAdView =  rootView.findViewById(R.id.adView);
+        AdView mAdView = rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         new RetrieveTopPlayListAsyncTask(rootView).execute();
@@ -187,12 +187,15 @@ public class Top10Fragment extends Fragment {
                             JSONObject eachGame = itemsArray.getJSONObject(i);
                             JSONObject snippet = eachGame.getJSONObject("snippet");
                             String title = snippet.getString("title");
-                            String description = snippet.getString("description");
-                            String thumbnails = snippet.getJSONObject("thumbnails").getJSONObject("high").getString("url");
-                            JSONObject resourceId = snippet.getJSONObject("resourceId");
-                            String videoId = resourceId.getString("videoId");
+                            if (!title.contains("Private")) {
+                                String description = snippet.getString("description");
+                                String thumbnails = snippet.getJSONObject("thumbnails").getJSONObject("high").getString("url");
+                                JSONObject resourceId = snippet.getJSONObject("resourceId");
+                                String videoId = resourceId.getString("videoId");
 
-                            gameList.add(new Game(title, description, thumbnails, videoId));
+                                gameList.add(new Game(title, description, thumbnails, videoId));
+                            }
+
                         }
 
                         baseUrl = Config.TOP_PLAYS_API + "&pageToken=" + nextPageToken;
