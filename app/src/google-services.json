@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "298972064108",
+    "firebase_url": "https://nbahighlights-46d03.firebaseio.com",
+    "project_id": "nbahighlights-46d03",
+    "storage_bucket": "nbahighlights-46d03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298972064108:android:3651232c0ed287e1",
+        "android_client_info": {
+          "package_name": "com.oxygenmobile.nbahighlights"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298972064108-3mb2lvc53heo562qq3qmsaqov9adpil3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oxygenmobile.nbahighlights",
+            "certificate_hash": "4ae88241802a119b5c0560a34fd941b1e6fd0d90"
+          }
+        },
+        {
+          "client_id": "298972064108-scv2kc8k30ab28pgebsvdhjvpnpdlodg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqd26TWsQjWitu29QkEDx8asmtrK2vz1w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298972064108-scv2kc8k30ab28pgebsvdhjvpnpdlodg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

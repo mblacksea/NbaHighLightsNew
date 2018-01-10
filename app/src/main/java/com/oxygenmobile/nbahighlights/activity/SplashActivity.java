@@ -23,6 +23,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.oxygenmobile.nbahighlights.R;
 import com.oxygenmobile.nbahighlights.configuration.Config;
 import com.oxygenmobile.nbahighlights.model.PlayListItem;
@@ -38,6 +43,30 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+
+        //todo firebase duzenlemsi yapilacak.
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("allPlayList");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    String value  = postSnapshot.getValue(String.class);
+                    if (value  != null) {
+
+                        Log.e("Value from firabase",value);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         RetrievePlayListAsyncTask retrievePlayListAsyncTask = new RetrievePlayListAsyncTask();
         retrievePlayListAsyncTask.execute();
